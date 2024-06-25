@@ -35,7 +35,10 @@ export const NewTaskForm = () => {
       <button type='submit'>Create new reminder</button>
     </form>
   ) : (
-    <div className='new-task-form waiting' onClick={() => onTaskStart()}>
+    <div
+      className='new-task-form waiting'
+      onClick={(event) => onTaskStart(event)}
+    >
       <h3>Add a new reminder</h3>
     </div>
   );

@@ -41,7 +41,8 @@ export const useToDoStore = create(
           state.newTask = { title: "", desc: "", isStarted: false };
         }),
 
-      createNewTask: () => {
+      createNewTask: (event) => {
+        event.preventDefault();
         // trim title and desc to prevent create 'spaces-only' kind of task
         set((state) => {
           state.newTask = {
