@@ -8,7 +8,7 @@
 }
 
 .waiting:hover {
-  background-color: Beige;
+  background-color: MediumAquaMarine;
   cursor: pointer;
   user-select: none;
 }
@@ -46,13 +46,27 @@
   resize: none;
 }
 
-.new-task-form button {
+.buttons-container {
+  display: flex;
+  flex-direction: row;
+  place-content: center;
+  column-gap: 1rem;
+  width: fit-content;
+  margin: auto;
+}
+
+.buttons-container button,
+.buttons-container button:hover:disabled {
   margin: 0 auto 0.5rem;
   width: fit-content;
   border: 0.125rem solid SteelBlue;
   background-color: lightsteelblue;
 }
 
-.new-task-form button:hover {
-  background-color: beige;
+.buttons-container button:hover {
+  background-color: MediumAquaMarine;
+}
+
+.buttons-container button:last-child:hover {
+  background-color: LightSalmon;
 }
