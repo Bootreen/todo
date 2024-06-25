@@ -22,7 +22,7 @@ export const NewTaskForm = () => {
   };
 
   return isStarted ? (
-    <form onSubmit={createNewTask} className='new-task-form'>
+    <form onSubmit={(event) => createNewTask(event)} className='new-task-form'>
       <label htmlFor='title'>New reminder</label>
       <input
         id='title'
@@ -47,10 +47,7 @@ export const NewTaskForm = () => {
       </div>
     </form>
   ) : (
-    <div
-      className='new-task-form waiting'
-      onClick={(event) => onTaskStart(event)}
-    >
+    <div className='new-task-form waiting' onClick={onTaskStart}>
       <h3>Add a new reminder</h3>
     </div>
   );

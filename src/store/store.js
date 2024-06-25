@@ -84,7 +84,7 @@ export const useToDoStore = create(
             },
           });
         });
-        get().actions.resetNewTask();
+        get().actions.resetNewTask(event);
       },
     },
   }))
