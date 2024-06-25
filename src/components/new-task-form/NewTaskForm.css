@@ -46,7 +46,8 @@
   resize: none;
 }
 
-.new-task-form button {
+.new-task-form button,
+.new-task-form button:hover:disabled {
   margin: 0 auto 0.5rem;
   width: fit-content;
   border: 0.125rem solid SteelBlue;

@@ -20,7 +20,9 @@ export const ToDoCard = ({ id, title, desc, isFinished }) => {
           </div>
         </div>
       </div>
-      <p>{desc}</p>
+      {desc.split("\n").map((line, id) => (
+        <p key={id}>{line}</p>
+      ))}
     </div>
   );
 };
