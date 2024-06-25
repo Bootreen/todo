@@ -1,3 +1,4 @@
+import { v4 as uuidv4 } from "uuid";
 import { create } from "zustand";
 import { immer } from "zustand/middleware/immer";
 
@@ -54,13 +55,14 @@ export const useToDoStore = create(
         } else {
           set((state) => {
             Object.assign(state.toDoList, {
-              [state.newTask.title]: {
+              [uuidv4()]: {
                 title: state.newTask.title,
                 desc: state.newTask.desc,
                 isFinished: false,
               },
             });
           });
+          console.log(get().toDoList);
           get().actions.resetNewTask();
         }
       },
