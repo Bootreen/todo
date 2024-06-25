@@ -10,6 +10,7 @@ export const useToDoStore = create(
       isStarted: false,
       title: "",
       desc: "",
+      isEmpty: true,
     },
 
     actions: {
@@ -26,46 +27,62 @@ export const useToDoStore = create(
 
       onTaskStart: () => set((state) => void (state.newTask.isStarted = true)),
 
-      onTitleChange: (event) =>
+      onTitleChange: (event) => {
         set((state) => {
           state.newTask.title = event.target.value;
-        }),
+        });
+        get().actions.checkEmptyTask();
+      },
 
-      onDescChange: (event) =>
+      onDescChange: (event) => {
         set((state) => {
           state.newTask.desc = event.target.value;
-        }),
+        });
+        get().actions.checkEmptyTask();
+      },
 
-      resetNewTask: () =>
+      checkEmptyTask: () =>
         set((state) => {
-          state.newTask = { title: "", desc: "", isStarted: false };
+          state.newTask.isEmpty =
+            get().newTask.title.trim() === "" &&
+            get().newTask.desc.trim() === ""
+              ? true
+              : false;
         }),
 
-      createNewTask: (event) => {
-        event.preventDefault();
-        // trim title and desc to prevent create 'spaces-only' kind of task
+      trimTaskText: () =>
         set((state) => {
           state.newTask = {
             title: state.newTask.title.trim(),
             desc: state.newTask.desc.trim(),
             isStarted: state.newTask.isStarted,
+            isEmpty: state.newTask.isEmpty,
           };
-        });
-        if (get().newTask.title === "" && get().newTask.desc === "") {
-          alert("You can't create an empty task");
-        } else {
-          set((state) => {
-            Object.assign(state.toDoList, {
-              [uuidv4()]: {
-                title: state.newTask.title,
-                desc: state.newTask.desc,
-                isFinished: false,
-              },
-            });
+        }),
+
+      resetNewTask: () =>
+        set((state) => {
+          state.newTask = {
+            title: "",
+            desc: "",
+            isStarted: false,
+            isEmpty: true,
+          };
+        }),
+
+      createNewTask: (event) => {
+        event.preventDefault();
+        get().actions.trimTaskText();
+        set((state) => {
+          Object.assign(state.toDoList, {
+            [uuidv4()]: {
+              title: state.newTask.title,
+              desc: state.newTask.desc,
+              isFinished: false,
+            },
           });
-          console.log(get().toDoList);
-          get().actions.resetNewTask();
-        }
+        });
+        get().actions.resetNewTask();
       },
     },
   }))

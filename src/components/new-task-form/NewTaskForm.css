@@ -8,7 +8,7 @@
 }
 
 .waiting:hover {
-  background-color: Beige;
+  background-color: MediumAquaMarine;
   cursor: pointer;
   user-select: none;
 }
@@ -54,5 +54,5 @@
 }
 
 .new-task-form button:hover {
-  background-color: beige;
+  background-color: MediumAquaMarine;
 }

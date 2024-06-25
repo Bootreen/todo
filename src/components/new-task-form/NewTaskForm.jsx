@@ -2,7 +2,9 @@ import "./NewTaskForm.css";
 import { useToDoStore, useToDoActions } from "../../store/store";
 
 export const NewTaskForm = () => {
-  const { title, desc, isStarted } = useToDoStore((state) => state.newTask);
+  const { title, desc, isStarted, isEmpty } = useToDoStore(
+    (state) => state.newTask
+  );
   const { onTaskStart, onTitleChange, onDescChange, createNewTask } =
     useToDoActions();
 
@@ -32,7 +34,9 @@ export const NewTaskForm = () => {
         onChange={(event) => onDescChange(event)}
         onKeyUp={(event) => textAreaAdjustHeight(event)}
       />
-      <button type='submit'>Create new reminder</button>
+      <button type='submit' disabled={isEmpty}>
+        Create new reminder
+      </button>
     </form>
   ) : (
     <div
