@@ -41,16 +41,28 @@ export const useToDoStore = create(
         }),
 
       createNewTask: () => {
+        // trim title and desc to prevent create 'spaces-only' kind of task
         set((state) => {
-          Object.assign(state.toDoList, {
-            [state.newTask.title]: {
-              title: state.newTask.title,
-              desc: state.newTask.desc,
-              isFinished: false,
-            },
-          });
+          state.newTask = {
+            title: state.newTask.title.trim(),
+            desc: state.newTask.desc.trim(),
+            isStarted: state.newTask.isStarted,
+          };
         });
-        get().actions.resetNewTask();
+        if (get().newTask.title === "" && get().newTask.desc === "") {
+          alert("You can't create an empty task");
+        } else {
+          set((state) => {
+            Object.assign(state.toDoList, {
+              [state.newTask.title]: {
+                title: state.newTask.title,
+                desc: state.newTask.desc,
+                isFinished: false,
+              },
+            });
+          });
+          get().actions.resetNewTask();
+        }
       },
     },
   }))
