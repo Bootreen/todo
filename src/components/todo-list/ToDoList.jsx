@@ -1,4 +1,3 @@
-import "./ToDoList.css";
 import { useToDoStore } from "../../store/store";
 import { ToDoCard } from "../todo-card/ToDoCard";
 import { NewTaskForm } from "../new-task-form/NewTaskForm";
