@@ -15,7 +15,7 @@ export const NewTaskForm = () => {
   };
 
   return isStarted ? (
-    <div className='new-task-form'>
+    <form onSubmit={createNewTask} className='new-task-form'>
       <label htmlFor='title'>New reminder</label>
       <input
         id='title'
@@ -32,8 +32,8 @@ export const NewTaskForm = () => {
         onChange={(event) => onDescChange(event)}
         onKeyUp={(event) => textAreaAdjustHeight(event)}
       />
-      <button onClick={createNewTask}>Create new reminder</button>
-    </div>
+      <button type='submit'>Create new reminder</button>
+    </form>
   ) : (
     <div className='new-task-form waiting' onClick={() => onTaskStart()}>
       <h3>Add a new reminder</h3>
