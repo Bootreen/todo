@@ -39,10 +39,12 @@ export const NewTaskForm = () => {
         onChange={(event) => onDescChange(event)}
         onKeyUp={(event) => textAreaAdjustHeight(event)}
       />
-      <button type='submit' disabled={isEmpty}>
-        Create new reminder
-      </button>
-      <button onClick={(event) => resetNewTask(event)}>Cancel</button>
+      <div className='buttons-container'>
+        <button type='submit' disabled={isEmpty}>
+          Save
+        </button>
+        <button onClick={(event) => resetNewTask(event)}>Cancel</button>
+      </div>
     </form>
   ) : (
     <div
