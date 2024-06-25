@@ -60,7 +60,8 @@ export const useToDoStore = create(
           };
         }),
 
-      resetNewTask: () =>
+      resetNewTask: (event) => {
+        event.preventDefault();
         set((state) => {
           state.newTask = {
             title: "",
@@ -68,7 +69,8 @@ export const useToDoStore = create(
             isStarted: false,
             isEmpty: true,
           };
-        }),
+        });
+      },
 
       createNewTask: (event) => {
         event.preventDefault();

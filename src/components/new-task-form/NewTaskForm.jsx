@@ -5,8 +5,13 @@ export const NewTaskForm = () => {
   const { title, desc, isStarted, isEmpty } = useToDoStore(
     (state) => state.newTask
   );
-  const { onTaskStart, onTitleChange, onDescChange, createNewTask } =
-    useToDoActions();
+  const {
+    onTaskStart,
+    onTitleChange,
+    onDescChange,
+    createNewTask,
+    resetNewTask,
+  } = useToDoActions();
 
   const textAreaAdjustHeight = (event) => {
     event.target.setAttribute("style", "height: auto");
@@ -37,6 +42,7 @@ export const NewTaskForm = () => {
       <button type='submit' disabled={isEmpty}>
         Create new reminder
       </button>
+      <button onClick={(event) => resetNewTask(event)}>Cancel</button>
     </form>
   ) : (
     <div
